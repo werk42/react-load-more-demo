@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 
 function App() {
   return (
-    <Container maxWidth='sm'>
+    <Container maxWidth='lg'>
         <Header title={'Star Wars Starships'} />
         <List />
     </Container>
