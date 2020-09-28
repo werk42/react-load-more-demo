@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { Starship } from '../interfaces/Starship';
 
-export const fetchApi = async (url: string) : Promise<Starship[] | {error: string}> => {
-    try{
-        const results = await axios.get(url);
-        return results.data;
-    } catch (error){
-        return {error}
-    }
+export interface StarshipsResponse {
+    results: Starship[];
+    next: string;
+}
+
+export const fetchStarships = async (url: string): Promise<StarshipsResponse> => {
+    const results = await axios.get<StarshipsResponse>(url);
+    return results.data;
 }
 

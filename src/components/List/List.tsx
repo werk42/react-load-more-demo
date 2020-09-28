@@ -1,28 +1,32 @@
-import React, { useState, useEffect} from 'react';
-import axios from 'axios';
+import React, { useState, useEffect, useCallback} from 'react';
 import AppListItem from './ListItem';
 import AppButton from '../Button/Button';
 import { Starship } from '../../interfaces/Starship';
-import { fetchApi } from '../../shared/apiCalls'; 
+import { fetchStarships } from '../../shared/apiCalls'; 
 
 const List = () => {
     const [items, setItems] = useState<Starship[]>([]);
     const [nextPage, setNextPage] = useState('');
     const [url, setUrl] = useState('https://swapi.dev/api/starships');
 
-    const getItems = async () => {
-        await fetchApi(url).then((response: any) => {
-            console.log('response', response);
-            setItems([...items, ...response.results])
+    const getItems = useCallback(async () => {
+        await fetchStarships(url).then((response) => {
+            setItems((currentItems) => {
+                return [...currentItems, ...response.results]
+            })
             setNextPage(response.next)
         }
-    )}
+    )}, [url]);
 
-    useEffect(() => {getItems()}, [url])
+    useEffect(() => {getItems()}, [getItems])
 
-    const loadMore = () => {
+    const loadMore = useCallback(() => {
+        if (!nextPage) {
+            return;
+        }
+
         setUrl(nextPage)
-    }
+    }, [nextPage]);
 
     return(
         <>

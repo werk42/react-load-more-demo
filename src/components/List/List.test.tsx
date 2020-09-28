@@ -1,26 +1,21 @@
 import React from 'react';
-import { render } from 'react-dom';
-import AppListItem from './ListItem';
-import List from './List';
-import axios from '../../___mocks___/axios';
+import { render, screen } from "@testing-library/react"
+import AppListItem from './ListItem'
 
-jest.mock('axios');
-const mockedAxios = axios as jest.Mocked<typeof axios>;
+describe('ListItem', () => {
+    it('should render correctly', () => {
+        render(<AppListItem model="UCC" name="Enterprise" />);
+    });
 
-test('mocking axios request', ()=> {
+    it('should render name', () => {
+        render(<AppListItem model="UCC" name="Enterprise" />);
 
-    const data = {
-        data: [
-            {
-                name: 'name 1',
-                model: 'model 1',
-            },
-        ]
-    }
+        expect(screen.getByText('Enterprise')).toBeInTheDocument();
+    });
 
-    const response = {data: data}
+    it('should render model', () => {
+        render(<AppListItem model="UCC" name="Enterprise" />);
 
-    mockedAxios.get.mockResolvedValueOnce(response);
-
-});
-
+        expect(screen.getByText('UCC')).toBeInTheDocument();
+    })
+})
