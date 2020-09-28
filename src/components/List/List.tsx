@@ -2,22 +2,21 @@ import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import AppListItem from './ListItem';
 import AppButton from '../Button/Button';
-import { Starship } from '../../shared/types';
+import { Starship } from '../../interfaces/Starship';
+import { fetchApi } from '../../shared/apiCalls'; 
 
 const List = () => {
     const [items, setItems] = useState<Starship[]>([]);
     const [nextPage, setNextPage] = useState('');
     const [url, setUrl] = useState('https://swapi.dev/api/starships');
 
-    const getItems = () => {
-        axios.get(url).then(
-            res => {
-                setItems([...items,...res.data.results])
-                setNextPage(res.data.next)
-            }).catch(error =>
-                console.log(error)
-        )
-    }
+    const getItems = async () => {
+        await fetchApi(url).then((response: any) => {
+            console.log('response', response);
+            setItems([...items, ...response.results])
+            setNextPage(response.next)
+        }
+    )}
 
     useEffect(() => {getItems()}, [url])
 
