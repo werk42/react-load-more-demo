@@ -1,20 +1,17 @@
 import React, {FC} from 'react';
 import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
 import { ListItemText } from '@material-ui/core';
+import { Starship } from '../../shared/types';
 
-interface AppListItemProps {
-    name: string,
-    model: string,
-}
 
-const AppListItem: FC<AppListItemProps> = ({name, model} : AppListItemProps) => {
+const AppListItem: FC<Starship> = (props) => {
     return(
         <>
             <ListItem 
-                key={name}>
+                key={props.name}>
                 <ListItemText 
-                    primary={name} 
-                    secondary={model} 
+                    primary={props.name} 
+                    secondary={props.model} 
                 /> 
             </ListItem>
         </>

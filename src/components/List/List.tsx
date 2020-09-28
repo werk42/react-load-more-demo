@@ -2,14 +2,10 @@ import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import AppListItem from './ListItem';
 import AppButton from '../Button/Button';
-
-interface List {
-    name: string;
-    model: string;
-}
+import { Starship } from '../../shared/types';
 
 const List = () => {
-    const [items, setItems] = useState<List[]>([]);
+    const [items, setItems] = useState<Starship[]>([]);
     const [nextPage, setNextPage] = useState('');
     const [url, setUrl] = useState('https://swapi.dev/api/starships');
 
