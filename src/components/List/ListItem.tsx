@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
+import ListItem from '@material-ui/core/ListItem';
 import { ListItemText } from '@material-ui/core';
 import { Starship } from '../../shared/types';
 
