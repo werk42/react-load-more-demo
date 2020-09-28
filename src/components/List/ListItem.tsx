@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import { ListItemText } from '@material-ui/core';
-import { Starship } from '../../shared/types';
+import { Starship } from '../../interfaces/Starship';
 
 
 const AppListItem: FC<Starship> = (props) => {
