@@ -31,8 +31,17 @@ const List = () => {
 
     return(
         <>
-        {items.map((i) => <AppListItem key={i.name} name={i.name} model={i.model}/>)}
-        {nextPage === null  ? null : <AppButton onClick={loadMore} title={'Load more'} />}
+        {items.map((i) => 
+            <AppListItem 
+                key={i.name} 
+                name={i.name} 
+                model={i.model}
+            />)}
+        {nextPage === null  ? null : 
+            <AppButton 
+                onClick={loadMore} 
+                title={'Load more'} 
+            />}
         </>
     )
 }

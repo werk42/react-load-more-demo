@@ -10,8 +10,12 @@ interface AppListItemProps {
 const AppListItem: FC<AppListItemProps> = ({name, model} : AppListItemProps) => {
     return(
         <>
-            <ListItem key={name}>
-                <ListItemText primary={name} secondary={model} /> 
+            <ListItem 
+                key={name}>
+                <ListItemText 
+                    primary={name} 
+                    secondary={model} 
+                /> 
             </ListItem>
         </>
     )

@@ -9,7 +9,11 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({title}) => {
     return(
         <>
-        <AppBar position='relative'><h1 className={style.title}>{title}</h1></AppBar>
+        <AppBar position='relative'>
+            <h1 className={style.title}>.
+                {title}
+            </h1>
+        </AppBar>
         </>
     )
 }
